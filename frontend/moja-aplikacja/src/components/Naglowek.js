@@ -21,13 +21,25 @@ const Naglowek = () => {
 
   return (
     <nav className="navbar">
-      <h1><Link to="/" onClick={closeMenu}>Braid Hair Glamour</Link></h1>
+      <Link to="/" onClick={closeMenu}>
+        <img src="/images/logo.svg" alt="Braid Hair Glamour" className="logo" />
+      </Link>
       <div className="hamburger" onClick={toggleMenu}>
-        <div className="line"></div>
-        <div className="line"></div>
-        <div className="line"></div>
+        <div className="row">
+          <div className="dot"></div>
+          <div className="dot"></div>
+        </div>
+        <div className="row">
+          <div className="dot"></div>
+          <div className="dot"></div>
+        </div>
       </div>
       <ul className={isOpen ? 'nav-links open' : 'nav-links'}>
+        {/* Linki dostępne dla wszystkich */}
+        <li><Link to="/o-nas" onClick={closeMenu}>O nas</Link></li>
+        <li><Link to="/rezerwacje" onClick={closeMenu}>Zarezerwuj Wizytę</Link></li>
+        <li><Link to="/wiadomosci" onClick={closeMenu}>Kontakt</Link></li>
+
         {user ? (
           <>
             <li><Link to="/konto" onClick={closeMenu}>Moje Konto</Link></li>
@@ -37,16 +49,10 @@ const Naglowek = () => {
                 <li><Link to="/wiadomosci" onClick={closeMenu}>Wszystkie Wiadomości</Link></li>
               </>
             )}
-            {user.role !== 'admin' && (
-              <>
-                <li><Link to="/rezerwacje" onClick={closeMenu}>Zarezerwuj Wizytę</Link></li>
-                <li><Link to="/wiadomosci" onClick={closeMenu}>Moje Wiadomości</Link></li>
-              </>
-            )}
             <li><button onClick={() => { handleLogout(); closeMenu(); }}>Wyloguj się</button></li>
           </>
         ) : (
-          <li><Link to="/" onClick={closeMenu}>Logowanie/Rejestracja</Link></li>
+          <li><button onClick={() => { closeMenu(); window.location.href = '/autoryzacja'; }}>Logowanie/Rejestracja</button></li>
         )}
       </ul>
     </nav>

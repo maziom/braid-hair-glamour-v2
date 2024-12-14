@@ -1,0 +1,95 @@
+.aboutus {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #F9E6F9;
+}
+
+#aboutus-intro {
+  font-size: 18px;
+  font-family:cursive;
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-top: 50px;
+  margin: 20px;
+  border-radius: 8px;
+}
+
+#aboutus-intro-text {
+  font-size: 1em;
+  line-height: 1.8;
+}
+
+#aboutus-bio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+#aboutus-bio-text {
+  flex: 1;
+  margin-right: 20px;
+}
+
+#aboutus-bio-title {
+  font-size: 1.8em;
+  color: #333;
+}
+
+#aboutus-bio-description {
+  font-size: 18px;
+  font-family:cursive;
+  margin-top: 10px;
+  font-size: 1em;
+}
+
+#aboutus-bio-image {
+  flex: 1;
+  text-align: center;
+}
+
+#aboutus-bio-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+#aboutus-contact {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#aboutus-contact-button {
+  display: block;   
+  margin: 0 auto;
+  background-color: #000000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 52px;
+  cursor: pointer;
+  font-size: 1em;
+  width: 280px;
+  height: 60px;
+  padding-bottom: 10px;
+}
+
+#aboutus-contact-button:hover {
+  background-color: #1e1e1e;
+}
+
+@media (max-width: 768px) {
+  #aboutus-bio {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #aboutus-bio-text {
+    margin-right: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  #aboutus-intro {
+    padding: 20px;
+  }
+}

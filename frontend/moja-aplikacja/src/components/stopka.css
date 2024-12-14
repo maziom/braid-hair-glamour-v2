@@ -1,0 +1,121 @@
+.footer {
+  background-color: #FFB6C1;
+  padding: 40px 100px; /* Większe paddingi dla lepszego wyglądu na szerokich ekranach */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 40px; /* Zwiększenie odstępu między sekcjami */
+}
+
+.footer-message {
+  flex: 1 1 40%; /* Zwiększenie szerokości do 40% */
+  max-width: 45%; /* Ustawienie maksymalnej szerokości na 45% */
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.footer-message h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.contact-form {
+  flex: 1 1 50%; /* Zwiększenie szerokości formularza do 50% */
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form .form-group label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.contact-form .form-group input,
+.contact-form .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.contact-form button {
+  width: 260px;
+  height: 60px;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.contact-form button:hover {
+  background-color: #333;
+}
+
+.footer-icons {
+  display: inline-flex;
+  gap: 20px;
+}
+
+.footer-icons a {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+}
+
+.footer-icons a:hover {
+  color: #555;
+}
+
+/* Stylizacja domyślna */
+.feedback {
+  background-color: #FFB6C1;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* Kolor zielony dla sukcesu */
+.feedback.success {
+  background-color: #FFB6C1;
+  color: #155724;
+}
+
+/* Kolor czerwony dla błędu */
+.feedback.error {
+  background-color: #FFB6C1;
+  color: #721c24;
+}
+
+
+/* Dostosowanie dla urządzeń mobilnych */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px; /* Zmniejszenie paddingu dla mniejszych ekranów */
+  }
+
+  .footer-message,
+  .contact-form {
+    max-width: 100%;
+  }
+
+  .footer-message {
+    text-align: center;
+  }
+
+  .footer-icons {
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .contact-form button {
+    width: 100%;
+  }
+}

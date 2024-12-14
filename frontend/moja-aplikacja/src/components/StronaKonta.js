@@ -20,6 +20,12 @@ const StronaKonta = () => {
     }
   }, [user]);
 
+ 
+  useEffect(() => {
+    document.title = "Moje Konto | Braid Hair Glamour ";
+  }, []);
+  
+
   const handleUpdate = async (id) => {
     try {
       const response = await fetch(`http://127.0.0.1:5000/api/rezerwacje/${id}`, {
@@ -69,7 +75,6 @@ const StronaKonta = () => {
       {user && (
         <div>
           <p>Nazwa użytkownika: {user.username}</p>
-          <p>Rola: {user.role}</p>
         </div>
       )}
       {user && user.role !== 'admin' && (

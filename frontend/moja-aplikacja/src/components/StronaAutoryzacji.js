@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import './StronaAutoryzacji.css';
 
@@ -7,13 +7,26 @@ const StronaAutoryzacji = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [feedback, setFeedback] = useState({ message: '', type: '' }); // Obiekt feedback przechowujący komunikaty i ich typy
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    document.title = isLogin ? 'Logowanie | Braid Hair Glamour' : 'Rejestracja | Braid Hair Glamour';
+  }, [isLogin]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isLogin) {
-      login(username, password);
-    } else {
-      register(username, password);
+    setFeedback({ message: '', type: '' }); // Resetowanie feedbacku przed nową próbą
+
+    try {
+      if (isLogin) {
+        const response = await login(username, password);
+        setFeedback({ message: response.message || 'Zalogowano pomyślnie', type: 'success' }); // Sukces
+      } else {
+        const response = await register(username, password);
+        setFeedback({ message: response.message || 'Rejestracja zakończona sukcesem', type: 'success' }); // Sukces
+      }
+    } catch (err) {
+      setFeedback({ message: err.response?.data?.message || 'Wystąpił błąd. Spróbuj ponownie.', type: 'error' }); // Błąd
     }
   };
 
@@ -35,6 +48,14 @@ const StronaAutoryzacji = () => {
         />
         <button type="submit">{isLogin ? 'Zaloguj się' : 'Zarejestruj się'}</button>
       </form>
+
+      {/* Komunikat o błędzie lub sukcesie */}
+      {feedback.message && (
+        <div className={`feedback ${feedback.type}`}>
+          {feedback.message}
+        </div>
+      )}
+
       <button onClick={() => setIsLogin(!isLogin)}>
         {isLogin ? 'Nie masz konta? Zarejestruj się' : 'Masz już konto? Zaloguj się'}
       </button>

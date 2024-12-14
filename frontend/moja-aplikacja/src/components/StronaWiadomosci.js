@@ -18,6 +18,11 @@ const StronaWiadomosci = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    document.title = "Wiadomość | Braid Hair Glamour ";
+  }, []);
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -41,7 +46,7 @@ const StronaWiadomosci = () => {
   };
 
   if (!user) {
-    return <div>Proszę się zalogować, aby uzyskać dostęp do wiadomości.</div>;
+    return <div className="info">Proszę się zalogować, aby uzyskać dostęp do wiadomości.</div>;
   }
 
   return (

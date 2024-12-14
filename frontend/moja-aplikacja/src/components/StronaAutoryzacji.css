@@ -1,3 +1,4 @@
+/* Stylizacja kontenera logowania/rejestracji */
 .auth-container {
   background: #FFF;
   padding: 2rem;
@@ -8,29 +9,60 @@
   text-align: center;
 }
 
+/* Nagłówek */
 .auth-container h2 {
-  color: #FF69B4;
+  color: #333;
   margin-bottom: 1rem;
 }
 
+/* Stylizacja pól wejściowych */
 .auth-container input {
   width: calc(100% - 2rem);
   padding: 0.5rem;
   margin: 0.5rem 0;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 1rem;
 }
 
+/* Stylizacja przycisków */
 .auth-container button {
-  background: #FF69B4;
-  border: none;
+  min-height: fit-content;
+  background-color: #000000;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 5px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: none;
   margin-top: 1rem;
 }
 
+/* Efekt po najechaniu na przycisk */
 .auth-container button:hover {
-  background: #FF1493;
+  border: 1px solid black;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+/* Stylizacja komunikatu o błędzie/sukcesie */
+.feedback {
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 10px;
+  font-weight: 600;
+ 
+}
+
+/* Kolor zielony dla sukcesu */
+.feedback.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Kolor czerwony dla błędu */
+.feedback.error {
+  background-color: #f8d7da;
+  color: #721c24;
 }

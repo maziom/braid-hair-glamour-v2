@@ -1,0 +1,243 @@
+/* Globalne tło */
+body {
+  background-color: #FFC0CB;
+}
+
+/* Podstawowy styl sekcji */
+.homepage {
+  font-family: 'Epilogue', sans-serif;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Nagłówek */
+.header-section {
+  background-color: #FFB6C1;
+  padding: 50px 20px;
+  border-radius: 10px;
+}
+
+.header-container {
+  display: flex;
+  flex-wrap:  nowrap;
+  align-items: center; /* Wyrównanie pionowe */
+  justify-content: space-between; /* Równomierne rozmieszczenie elementów */
+  gap: 100px;
+}
+
+.header-container img {
+  flex: 1 1 33%; /* Zdjęcie zajmuje połowę kontenera */
+  max-width: 100%; /* Zdjęcie nie przekracza szerokości rodzica */
+  height: 500px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.headline-container {
+  flex: 1 1 77%; /* Tekst zajmuje połowę kontenera */
+  text-align: left;
+}
+
+.headline-container p {
+  margin: 5px 0; /* Odstępy między paragrafami */
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.headline-container .main-title {
+  font-size: clamp(36px, 5vw, 64px); /* Responsywne skalowanie */
+  color: #2d2d2d;
+  margin: 10px 0;
+}
+.partners{
+  text-align: center;
+  color: #333;
+  font-size: 32px;
+}
+.logo {
+  width: 100px;
+  height: auto;
+  transition: transform 0.5s ease;
+}
+
+.logo:hover {
+  transform: rotate(360deg);
+}
+
+.main-title {
+  font-size: clamp(36px, 6vw, 64px);
+  color: #2d2d2d;
+  margin: 10px 0;
+}
+
+.description {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Sekcja promo */
+.promo-block {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #FFB6C1;
+  border-radius: 10px;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap; /* Umożliwia łamanie wierszy */
+  justify-content: center; /* Centruje elementy */
+  gap: 250px; /* Odstępy między obrazami */
+  width: 100%;
+}
+
+.grey-hair,
+.alt-hair {
+  width: 45%; /* Obrazy zajmują 45% szerokości na desktopach */
+  max-width: 200px; /* Maksymalna szerokość dla lepszej kontroli */
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain; /* Zachowanie proporcji obrazu */
+}
+
+/* Sekcja umiejętności */
+.skills-section {
+  padding: 40px 20px;
+  background-color: #FFC0CB;
+  border-radius: 10px;
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.skill {
+  padding: 20px;
+  background: #FFC0CB;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.skill-icon {
+  width: 80px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+/* Galeria */
+.gallery {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.gallery h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 kolumny równych szerokości */
+  gap: 20px; /* Odstęp między obrazami */
+  padding: 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Sekcja opinii */
+.customer-reviews {
+  padding: 40px 20px;
+  background-color: #FFE4E1;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.customer-reviews h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Footer */
+.footer {
+  margin-top: 40px;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column; /* Ustawienie w kolumnie na mobilnych urządzeniach */
+    text-align: center; /* Wyrównanie tekstu do środka */
+    gap: 40px  
+  }
+
+  .headline-container {
+    flex: none; /* Wyłącz podział szerokości */
+    width: 100%; /* Tekst zajmuje pełną szerokość */
+  }
+
+  .header-container img {
+    width: 100%; /* Obraz zajmuje 100% szerokości kontenera */
+    margin: 0 auto; /* Wycentrowanie obrazu */
+  }
+
+  .grey-hair,
+  .alt-hair {
+    width: 80%; /* Na urządzeniach mobilnych obrazy zajmują 80% szerokości kontenera */
+    max-width: none; /* Brak ograniczenia szerokości */
+  }
+  .image-container {
+    gap: 40px;
+  }
+  .homepage {
+    padding: 16px;
+  }
+
+  .header-section {
+    padding: 30px 16px;
+  }
+
+  .promo-item {
+    flex: 1 1 100%;
+  }
+
+  .skills-section {
+    padding: 20px 16px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .customer-reviews {
+    padding: 20px 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .homepage {
+    padding: 40px;
+  }
+
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

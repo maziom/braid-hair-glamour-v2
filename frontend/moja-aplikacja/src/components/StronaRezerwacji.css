@@ -35,4 +35,7 @@
   .rezerwacja-container button:hover {
     background: #FF4081;
   }
+  .info {
+    text-align: center;
+  }
   

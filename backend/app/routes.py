@@ -102,15 +102,17 @@ def usun_rezerwacje(id):
     return jsonify({'message': 'Rezerwacja nie została znaleziona lub brak uprawnień'}), 404
 
 @main.route('/api/wiadomosci', methods=['POST'])
-@login_required
 def wyslij_wiadomosc():
     data = request.get_json()
     receiver = User.query.filter_by(username='admin').first()
     if not receiver:
         return jsonify({'message': 'Admin nie został znaleziony'}), 404
+    
+   # Obsługa braku zalogowanego użytkownika
+    sender_id = current_user.id if hasattr(current_user, 'id') and current_user.is_authenticated else None
 
     new_message = Message(
-        sender_id=current_user.id,
+        sender_id=sender_id,
         receiver_id=receiver.id,
         content=data['content']
     )

@@ -2,8 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import './StronaRezerwacji.css';
 
-const StronaRezerwacji = () => {
-  const { user } = useContext(AuthContext);
+const StronaRezerwacji = () => { const { user } = useContext(AuthContext);
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [bookings, setBookings] = useState([]);
@@ -21,6 +20,11 @@ const StronaRezerwacji = () => {
         .catch(error => console.error('Error:', error));
     }
   }, [user]);
+
+  useEffect(() => {
+    document.title = "Rezerwacja | Braid Hair Glamour ";
+  }, []);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,7 +93,7 @@ const StronaRezerwacji = () => {
   };
 
   if (!user) {
-    return <div>Proszę się zalogować, aby uzyskać dostęp do rezerwacji.</div>;
+    return <div className="info">Proszę się zalogować, aby uzyskać dostęp do rezerwacji.</div>;
   }
 
   return (
