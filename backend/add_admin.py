@@ -12,7 +12,7 @@ with app.app_context():
        
         hashed_password = bcrypt.generate_password_hash('adminpassword').decode('utf-8')
       
-        new_user = User(username='admin', password=hashed_password, role='admin')
+        new_user = User(username='admin', password=hashed_password, email= 'szczpanski77@gmail.com', role='admin')
         db.session.add(new_user)
         db.session.commit()
         print("Użytkownik 'admin' został dodany do bazy danych.")

@@ -9,6 +9,8 @@ import StronaGlowna from './components/StronaGlowna';
 import StronaOnas from './components/StronaOnas';
 import Naglowek from './components/Naglowek';
 import Footer from './components/stopka';
+import ZapomnianeHaslo from './components/ZapomnianeHaslo';
+import ResetHaslo from './components/ResetHaslo';
 
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route path="/rezerwacje" element={<StronaRezerwacji />} />
           <Route path="/wiadomosci" element={<StronaWiadomosci />} />
           <Route path="/autoryzacja" element={<StronaAutoryzacji />} />
+          <Route path="/zapomniane-haslo" element={<ZapomnianeHaslo />} />
+          <Route path="/reset-hasla" element={<ResetHaslo />} />
         </Routes>
       </AuthProvider>
       <Footer />

@@ -13,16 +13,25 @@
 .auth-container h2 {
   color: #333;
   margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
+
 
 /* Stylizacja pól wejściowych */
 .auth-container input {
   width: calc(100% - 2rem);
-  padding: 0.5rem;
+  padding: 0.75rem;
   margin: 0.5rem 0;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.auth-container input:focus {
+  border-color: #5c6bc0;
+  outline: none;
 }
 
 /* Stylizacja przycisków */
@@ -30,7 +39,7 @@
   min-height: fit-content;
   background-color: #000000;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
@@ -39,30 +48,73 @@
   margin-top: 1rem;
 }
 
-/* Efekt po najechaniu na przycisk */
 .auth-container button:hover {
-  border: 1px solid black;
   background-color: #ffffff;
-  color: rgb(0, 0, 0);
+  color: #000000;
+  border: 1px solid black;
 }
 
-/* Stylizacja komunikatu o błędzie/sukcesie */
+/* Kolorowanie poprawnych i błędnych wyników walidacji */
+.valid {
+  color: green;
+}
+
+.invalid {
+  color: red;
+}
+
+/* Stylizacja dla komunikatów feedback */
 .feedback {
-  font-size: 16px;
-  padding: 10px;
-  margin-top: 10px;
-  font-weight: 600;
- 
+  font-size: 0.9em;
+  color: red;
+  margin-top: 5px;
 }
 
-/* Kolor zielony dla sukcesu */
-.feedback.success {
-  background-color: #d4edda;
-  color: #155724;
+/* Stylizacja dla grupy inputów z ikonami */
+.input-group {
+  position: relative;
 }
 
-/* Kolor czerwony dla błędu */
-.feedback.error {
-  background-color: #f8d7da;
-  color: #721c24;
+.input-group span {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+}
+
+/* Stylizacja dla zapomniałeś hasła */
+.forgot-password {
+  background: none;
+  color: #5c6bc0;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.forgot-password:hover {
+  color: #3f4fa9;
+}
+
+/* Stylizacja dla wskazówek przy rejestracji */
+.register-hints p {
+  font-size: 14px;
+  color: #333;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.register-hints p span {
+  font-weight: bold;
+}
+
+/* Stylizacja ogólna dla linków */
+.auth-container a {
+  color: #5c6bc0;
+  text-decoration: none;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
 }
