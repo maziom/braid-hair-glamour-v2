@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braid Hair Glamour</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFC0CB;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .header img {
+            max-width: 100px;
+        }
+        .content {
+            font-size: 16px;
+            color: #333;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+        .btn {
+            display: block; 
+            background: #FF69B4;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 20px auto; 
+            width: fit-content; 
+        }
+        .btn:hover {
+            background: #e85c9b;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <img src="http://localhost:3000/images/logo.svg" alt="Braid Hair Glamour Logo">
+        </div>
+        <div class="content">
+            <h2>Cześć {{ username }},</h2>
+            <p>{{ message }}</p>
+            {% if action_url %}
+                <a href="{{ action_url }}" class="btn">Kliknij tutaj</a>
+            {% endif %}
+        </div>
+        <div class="footer">
+            <p>Dziękujemy, że korzystasz z Braid Hair Glamour.</p>
+            <p>&copy; {{ year }} Braid Hair Glamour</p>
+        </div>
+    </div>
+</body>
+</html>

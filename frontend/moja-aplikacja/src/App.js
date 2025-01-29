@@ -11,7 +11,8 @@ import Naglowek from './components/Naglowek';
 import Footer from './components/stopka';
 import ZapomnianeHaslo from './components/ZapomnianeHaslo';
 import ResetHaslo from './components/ResetHaslo';
-
+import Strona404 from './components/Strona404';
+import Dostepnegodziny from './components/Dostepnegodziny';
 
 function App() {
   return (
@@ -23,10 +24,12 @@ function App() {
           <Route path="/konto" element={<StronaKonta />} />
           <Route path="/o-nas" element={<StronaOnas/>} />
           <Route path="/rezerwacje" element={<StronaRezerwacji />} />
-          <Route path="/wiadomosci" element={<StronaWiadomosci />} />
+          <Route path="/kontakt" element={<StronaWiadomosci />} />
           <Route path="/autoryzacja" element={<StronaAutoryzacji />} />
           <Route path="/zapomniane-haslo" element={<ZapomnianeHaslo />} />
           <Route path="/reset-hasla" element={<ResetHaslo />} />
+          <Route path="*" element={<Strona404 />} />
+          <Route path="/dostepne-godziny" element={<Dostepnegodziny />} />
         </Routes>
       </AuthProvider>
       <Footer />

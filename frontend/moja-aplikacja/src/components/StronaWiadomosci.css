@@ -1,21 +1,110 @@
-.wiadomosci-container {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Wrapper dla max-width */
+
+.contact-section-wrapper {
+  background-color: #F9E6F9;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.contact-section {
+  min-height: 600px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 1440px;
+  width: 100%; /* Dopasowanie do szerokości okna */
+  flex-wrap: wrap; /* Pozwala zawijać elementy na mniejszych ekranach */
+  gap: 20px;
+}
+
+/* Każdy element sekcji */
+.contact-item {
+  text-align: center;
+  max-width: 300px;
+  flex: 1 1 300px; /* Dynamiczna szerokość dla responsywności */
+}
+
+.contact-item h3 {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.contact-item p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Przyciski */
+.book-appointment-button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.book-appointment-button:hover {
+  background-color: #555;
+}
+
+/* Ikony */
+.icon {
+  width: 90px;
+  height: 90px;
+  font-size: 40px;
+  display: block;
+  margin: 0 auto;
+}
+
+.contact-section .a {
+  text-decoration: none;
+}
+.clickable-link {
+  text-decoration: none; /* Usuwa podkreślenie */
+  color: inherit; /* Zachowuje domyślny kolor tekstu lub dziedziczy z rodzica */
+}
+.contact-section .lub {
+  font-size: 18px;
+  font-weight: bold;
+}
+.clickable-link:hover {
+  text-decoration: underline; /* Opcjonalnie: dodaje podkreślenie przy najechaniu */
+  color: #454545; /* Możesz zmienić kolor podczas najechania */
+}
+/* Responsywność */
+@media (max-width: 768px) {
+  .contact-section {
+    flex-direction: column; /* Układ w kolumnie na mniejszych ekranach */
+    align-items: center;
+    gap: 30px;
   }
-  
-  .wiadomosci-container ul {
-    list-style-type: none;
-    padding: 0;
+
+  .contact-item {
+    max-width: 90%; /* Rozciągnij do 90% szerokości ekranu */
   }
-  
-  .wiadomosci-container ul li {
-    padding: 10px;
-    background-color: #f5f5f5;
-    margin-bottom: 10px;
-    border-radius: 5px;
+
+  .book-appointment-button {
+    font-size: 1rem; /* Zwiększenie rozmiaru przycisku na mobilnych */
+    padding: 12px 24px;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .icon {
+    font-size: 30px; /* Zmniejszenie ikon na bardzo małych ekranach */
+  }
+
+  .contact-item h3 {
+    font-size: 1rem;
+  }
+
+  .contact-item p {
+    font-size: 0.8rem;
+  }
+}

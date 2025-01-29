@@ -1,16 +1,21 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom'; // Importujemy useNavigate
 import './StronaKonta.css';
 
 const StronaKonta = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate(); // Używamy useNavigate do przekierowania
   const [bookings, setBookings] = useState([]);
   const [editBooking, setEditBooking] = useState(null);
   const [newDate, setNewDate] = useState('');
   const [newTime, setNewTime] = useState('');
 
   useEffect(() => {
-    if (user && user.role !== 'admin') {
+    if (!user) {
+      // Jeśli użytkownik nie jest zalogowany, przekierowujemy na stronę logowania
+      navigate('/autoryzacja');
+    } else if (user.role !== 'admin') {
       fetch('http://127.0.0.1:5000/api/rezerwacje', {
         credentials: 'include'
       })
@@ -18,7 +23,7 @@ const StronaKonta = () => {
         .then(data => setBookings(data.bookings))
         .catch(error => console.error('Error:', error));
     }
-  }, [user]);
+  }, [user, navigate]);
 
  
   useEffect(() => {

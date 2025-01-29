@@ -1,79 +1,51 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import './StronaWiadomosci.css';
+import React from 'react';
+import './StronaWiadomosci.css'; // Plik CSS do stylizacji
+import { useNavigate } from 'react-router-dom';
+import phoneIcon from './icons/phone.svg'; // Ścieżka do własnej ikony telefonu
+import locationIcon from './icons/location.svg'; // Ścieżka do własnej ikony lokalizacji
+import smileIcon from './icons/smile.svg'; // Ścieżka do własnej ikony uśmiechu
 
 const StronaWiadomosci = () => {
-  const { user } = useContext(AuthContext);
-  const [wiadomosci, setWiadomosci] = useState([]);
-  const [content, setContent] = useState('');
-
-  useEffect(() => {
-    if (user && user.role === 'admin') {
-      fetch('http://127.0.0.1:5000/api/wiadomosci', {
-        credentials: 'include'
-      })
-        .then(response => response.json())
-        .then(data => setWiadomosci(data.messages))
-        .catch(error => console.error('Error:', error));
-    }
-  }, [user]);
-
-  useEffect(() => {
-    document.title = "Wiadomość | Braid Hair Glamour ";
-  }, []);
-  
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('http://127.0.0.1:5000/api/wiadomosci', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content }),
-        credentials: 'include'
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setWiadomosci([...wiadomosci, data]);
-        setContent('');
-      } else {
-        console.error('Błąd podczas wysyłania wiadomości');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate('/rezerwacje');
   };
 
-  if (!user) {
-    return <div className="info">Proszę się zalogować, aby uzyskać dostęp do wiadomości.</div>;
-  }
-
   return (
-    <div className="wiadomosci-container">
-      <h2>{user.role === 'admin' ? 'Wszystkie Wiadomości' : 'Wyślij Wiadomość'}</h2>
-      {user.role === 'admin' && (
-        <ul>
-          {wiadomosci.map(wiadomosc => (
-            <li key={wiadomosc.id}>
-              <p>Od: {wiadomosc.sender}</p>
-              <p>{wiadomosc.content}</p>
-              <p>{new Date(wiadomosc.timestamp).toLocaleString()}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-      {user.role !== 'admin' && (
-        <form onSubmit={handleSubmit}>
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="Treść wiadomości"
-            required
-          />
-          <button type="submit">Wyślij</button>
-        </form>
-      )}
+    <div className="contact-section-wrapper">
+      <div className="contact-section">
+        <div className="contact-item">
+          <img src={phoneIcon} alt="Phone Icon" className="icon" />
+          <h3>Umów się!</h3>
+          <a href="tel:+48731217999" className="clickable-link">
+            +48 731 217 999
+          </a>
+          <p className='lub'>Lub</p>
+          <button
+            id="aboutus-contact-button"
+            className="btn-contact"
+            onClick={handleButtonClick}
+          >
+            Zarezerwuj wizytę
+          </button>
+        </div>
+        <div className="contact-item">
+          <img src={locationIcon} alt="Location Icon" className="icon" />
+          <h3>Przyjdź na swoją odmianę!</h3>
+          <a
+            href="https://maps.app.goo.gl/VAWTZTcM7gYztLEK9"
+            className="clickable-link"
+          >
+            Powstańców Warszawy 15c<br />
+            35-314 Rzeszów
+          </a>
+        </div>
+        <div className="contact-item">
+          <img src={smileIcon} alt="Smile Icon" className="icon" />
+          <h3>Wyjdź na świat!</h3>
+          <p>I nie zapomnij zostawić opinii :)</p>
+        </div>
+      </div>
     </div>
   );
 };

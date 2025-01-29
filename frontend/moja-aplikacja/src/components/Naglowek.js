@@ -35,25 +35,35 @@ const Naglowek = () => {
         </div>
       </div>
       <ul className={isOpen ? 'nav-links open' : 'nav-links'}>
-        {/* Linki dostępne dla wszystkich */}
-        <li><Link to="/o-nas" onClick={closeMenu}>O nas</Link></li>
-        <li><Link to="/rezerwacje" onClick={closeMenu}>Zarezerwuj Wizytę</Link></li>
-        <li><Link to="/wiadomosci" onClick={closeMenu}>Kontakt</Link></li>
+        {(!user || user.role !== 'admin') && (
+        <>
+       <li><Link to="/o-nas" onClick={closeMenu}>O nas</Link></li>
+       <li><Link to="/rezerwacje" onClick={closeMenu} className='reseravation'>Zarezerwuj Wizytę</Link></li>
+       <li><Link to="/kontakt" onClick={closeMenu}>Kontakt</Link></li>
+    </>
+  )}
 
         {user ? (
-          <>
-            <li><Link to="/konto" onClick={closeMenu}>Moje Konto</Link></li>
-            {user.role === 'admin' && (
-              <>
-                <li><Link to="/rezerwacje" onClick={closeMenu}>Lista Rezerwacji</Link></li>
-                <li><Link to="/wiadomosci" onClick={closeMenu}>Wszystkie Wiadomości</Link></li>
-              </>
-            )}
-            <li><button onClick={() => { handleLogout(); closeMenu(); }}>Wyloguj się</button></li>
-          </>
-        ) : (
-          <li><button onClick={() => { closeMenu(); window.location.href = '/autoryzacja'; }}>Logowanie/Rejestracja</button></li>
+  <>
+        {/* Linki dostępne tylko dla admina */}
+       {user.role === 'admin' && (
+        <ul>
+       <li><Link to="/rezerwacje" onClick={closeMenu}>Lista Rezerwacji</Link></li>
+       <li><Link to="/dostepne-godziny" onClick={closeMenu}>Dostępne godziny wizyt</Link></li>
+        </ul>
         )}
+       <li className="user-info">
+       <Link to="/konto"  onClick={closeMenu} className="welcome-message">
+        Witaj, {user.username}
+       </Link>
+       <button onClick={() => { handleLogout(); closeMenu(); }}>Wyloguj się</button>
+       </li>
+
+  </>
+) : (
+  <li><button onClick={() => { closeMenu(); window.location.href = '/autoryzacja'; }}>Logowanie/Rejestracja</button></li>
+)}
+
       </ul>
     </nav>
   );

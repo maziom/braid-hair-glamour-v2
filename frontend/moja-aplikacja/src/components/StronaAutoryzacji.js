@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import './StronaAutoryzacji.css';
 import axios from 'axios'; 
-import { FaCheck, FaTimes } from 'react-icons/fa';
+import { FaCheck, FaTimes, FaEye, FaEyeSlash } from 'react-icons/fa'; // Dodajemy ikony do pokazania/ukrycia hasła
 import { useNavigate } from 'react-router-dom';
 
 const StronaAutoryzacji = () => {
@@ -20,6 +20,8 @@ const StronaAutoryzacji = () => {
   const [passwordValid, setPasswordValid] = useState(null);
   const [passwordFeedback, setPasswordFeedback] = useState('');
   const [feedback, setFeedback] = useState({ message: '', type: '' });
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Stan do kontrolowania widoczności hasła
 
   useEffect(() => {
     document.title = isLogin ? 'Logowanie | Braid Hair Glamour' : 'Rejestracja | Braid Hair Glamour';
@@ -92,26 +94,31 @@ const StronaAutoryzacji = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFeedback({ message: '', type: '' });
-
+    setLoading(true); 
+  
     if (!isLogin) {
       if (!usernameAvailable) {
         setFeedback({ message: 'Nazwa użytkownika jest zajęta.', type: 'error' });
+        setLoading(false); 
         return;
       }
       if (!emailValid) {
         setFeedback({ message: 'Proszę podać poprawny adres e-mail.', type: 'error' });
+        setLoading(false);
         return;
       }
       if (!emailAvailable) {
         setFeedback({ message: 'E-mail jest już zajęty.', type: 'error' });
+        setLoading(false);
         return;
       }
       if (!passwordValid) {
         setFeedback({ message: 'Hasło jest za krótkie.', type: 'error' });
+        setLoading(false);
         return;
       }
     }
-
+  
     try {
       if (isLogin) {
         const response = await login(username, password);
@@ -122,7 +129,9 @@ const StronaAutoryzacji = () => {
       }
     } catch (err) {
       const errorMessage = err.response?.data?.message || 'Wystąpił błąd. Spróbuj ponownie.';
-    setFeedback({ message: errorMessage, type: 'error' });
+      setFeedback({ message: errorMessage, type: 'error' });
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -178,11 +187,17 @@ const StronaAutoryzacji = () => {
 
         <div className="input-group">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"} // Przełączanie typu pola hasła
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Hasło"
           />
+          <span
+            className="toggle-password"
+            onClick={() => setShowPassword(!showPassword)} // Przełączanie widoczności hasła
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Ikona do pokazania/ukrycia hasła */}
+          </span>
           {password && passwordValid !== null && !passwordValid && (
             <span className="invalid">
               <FaTimes />
@@ -198,7 +213,13 @@ const StronaAutoryzacji = () => {
           <div className="feedback">{passwordFeedback}</div>
         )}
 
-        <button type="submit">{isLogin ? 'Zaloguj się' : 'Zarejestruj się'}</button>
+        <button type="submit" disabled={loading}>
+          {loading ? (
+            <div className="loader"></div> // Spinner
+          ) : (
+            isLogin ? 'Zaloguj się' : 'Zarejestruj się'
+          )}
+        </button>
       </form>
 
       {feedback.message && (

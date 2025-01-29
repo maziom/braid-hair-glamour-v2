@@ -1,25 +1,32 @@
-// frontend/src/components/ResetHaslo.js
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
 
 const ResetHaslo = () => {
-  const { token } = useParams();
+  const query = useQuery();
+  const token = query.get('token'); // Odczytaj token z query string
   const [newPassword, setNewPassword] = useState('');
   const [feedback, setFeedback] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/reset-password-confirm', {
+      const response = await axios.post('http://localhost:5000/api/ustaw_haslo', {
         token,
-        newPassword,
+        password: newPassword, // Zmieniono na "password" zgodnie z backendem
       });
       setFeedback(response.data.message);
     } catch (err) {
       setFeedback(err.response?.data?.message || 'Wystąpił błąd przy resetowaniu hasła.');
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -34,7 +41,13 @@ const ResetHaslo = () => {
           placeholder="Wpisz nowe hasło"
           required
         />
-        <button type="submit">Zresetuj hasło</button>
+         <button type="submit" disabled={loading}>
+        {loading ? (
+       <div className="loader"></div> 
+        ) : (
+           'Zresetuj hasło'
+        )}
+        </button>
       </form>
 
       {feedback && <div className="feedback">{feedback}</div>}

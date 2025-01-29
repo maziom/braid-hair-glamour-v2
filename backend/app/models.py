@@ -31,7 +31,6 @@ class Message(db.Model):
 
 class AvailableHours(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    admin_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     date = db.Column(db.String(100), nullable=False)
     time = db.Column(db.String(100), nullable=False)
-    admin = db.relationship('User', backref=db.backref('available_hours', lazy=True))
+    

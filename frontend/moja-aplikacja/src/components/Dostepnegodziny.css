@@ -1,0 +1,140 @@
+/* Globalne tło */
+body {
+    background-color: #FFC0CB;
+    font-family: 'Epilogue', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Sekcja główna */
+  .homepage {
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Nagłówek */
+  .header-section {
+    background-color: #FFB6C1;
+    padding: 50px 20px;
+    border-radius: 10px;
+  }
+  
+  .header-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+  }
+  
+  .headline-container {
+    flex: 1 1 77%;
+    text-align: left;
+  }
+  
+  .main-title {
+    font-size: clamp(15px, 5vw, 64px);
+    color: #2d2d2d;
+    margin: 10px 0;
+  }
+  
+  /* Formularz dodawania godzin */
+  .form-container {
+    background-color: #FFB6C1;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .form-field {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button.submit-button {
+    background-color: #0d0d0d;
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.submit-button:hover {
+    background-color: #eae3e6;
+    color: #0d0d0d;
+  }
+  
+  /* Lista godzin */
+  .hours-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .hour-item {
+    background-color: #FFE4E1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  button.delete-button {
+    background-color: #100f0f;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.delete-button:hover {
+    background-color: #ffffff;
+    color: #0d0d0d
+  }
+  
+  /* Responsywność */
+  @media (max-width: 768px) {
+    .homepage {
+      padding: 16px;
+    }
+  
+    .header-section {
+      padding: 30px 16px;
+    }
+  
+    .form-container {
+      padding: 20px 16px;
+    }
+  
+    .form-field {
+      margin-bottom: 16px;
+    }
+  
+    button.submit-button {
+      width: 100%;
+    }
+  
+    button.delete-button {
+      width: 50%;
+    }
+  }
+  

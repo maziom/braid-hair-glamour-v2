@@ -50,6 +50,7 @@
 
 /* Lista nawigacji (desktopowa) */
 .nav-links {
+  align-items: center;
   list-style: none;
   display: flex;
   gap: 1.5rem;
@@ -110,6 +111,21 @@
   text-align: center;
 }
 
+.nav-links .user-info {
+  display: flex;
+  flex-direction: column; /* Układ kolumnowy */
+  align-items: center;    
+}
+
+.nav-links .welcome-message {
+  font-weight: bold;
+  color: #000;
+}
+
+.nav-links .reseravation {
+  font-weight: bold;
+  color: grey;
+}
 /* Responsywność */
 @media (max-width: 768px) {
   .navbar{
@@ -128,3 +144,4 @@
     display: flex;
   }
 }
+
