@@ -212,39 +212,41 @@ const StronaRezerwacji = () => {
         </>
       )}
 
-        {user && user.role === 'admin' && (
-        <div>
-          <h3>Lista Rezerwacji</h3>
-          <ul>
-            {bookings.map(booking => (
-              <li key={booking.id}>
-                {editBooking === booking.id ? (
-                  <>
-                    <input
-                      type="date"
-                      value={newDate}
-                      onChange={(e) => setNewDate(e.target.value)}
-                    />
-                    <input
-                      type="time"
-                      value={newTime}
-                      onChange={(e) => setNewTime(e.target.value)}
-                    />
-                    <button onClick={() => handleUpdate(booking.id)}>Zapisz</button>
-                    <button onClick={() => setEditBooking(null)}>Anuluj</button>
-                  </>
-                ) : (
-                  <>
-                    <span>{booking.date} - {booking.time}</span>
-                    <button onClick={() => handleEditClick(booking)}>Edytuj</button>
-                    <button onClick={() => handleDelete(booking.id)}>Usuń</button>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+{user && user.role === 'admin' && (
+  <div>
+    <h3>Lista Rezerwacji</h3>
+    <ul>
+      {bookings.map(booking => (
+        <li key={booking.id} className="booking-item">
+          <div className="user-info">
+            <img 
+              src={booking.profile_picture ? `http://127.0.0.1:5000/static/${user.profile_picture}` : "/default-profile.png"} 
+              alt="Profil użytkownika"
+              className="profile-pic"
+            />
+            <div>
+              <p><strong>{booking.username}</strong> ({booking.email})</p>
+              <p>{booking.date} - {booking.time}</p>
+            </div>
+          </div>
+          {editBooking === booking.id ? (
+            <>
+              <input type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} />
+              <input type="time" value={newTime} onChange={(e) => setNewTime(e.target.value)} />
+              <button onClick={() => handleUpdate(booking.id)}>Zapisz</button>
+              <button onClick={() => setEditBooking(null)}>Anuluj</button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => handleEditClick(booking)}>Edytuj</button>
+              <button onClick={() => handleDelete(booking.id)}>Usuń</button>
+            </>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
     </div>
   );
 };
